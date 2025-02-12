@@ -70,11 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
     
   }
   void _changeScale() {
-      setState(() {
-        scale = scale == 1.0 ? 1.1 : 1.0;
-        duration = duration == 250 ? 500: 250;
-      });
-    }
+    setState(() {
+      scale = scale == 1.0 ? 1.1 : 1.0;
+      duration = duration == 200 ? 300: 200;
+    });
+  }
+  void _confetti() {
+    setState(() {
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     
@@ -91,19 +96,29 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        ElevatedButton(
-          onPressed: _changeScale,
-          child: const Text("Scale"),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(50),
-          child: AnimatedScale(
-              scale: scale,
-              duration: Duration(milliseconds: duration),
-              child: Image(image: const AssetImage("images/real_heart.webp"))),
-        ),
-      ])
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, 
+          children: [
+            ElevatedButton(
+              onPressed: _changeScale,
+              child: const Text("Scale"),
+            ),
+            ElevatedButton(
+              onPressed: _confetti, 
+              child: const Text("Who Likes Surprises!")
+            ),
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(50),
+                child: AnimatedScale(
+                    scale: scale,
+                    duration: Duration(milliseconds: duration),
+                    child: Image(image: const AssetImage("images/real_heart.webp"))),
+                ),
+              ),
+            ]
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
