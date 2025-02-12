@@ -57,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   double scale = 1.0; 
+  int duration = 1;
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -69,7 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
     
   }
   void _changeScale() {
-      setState(() => scale = scale == 1.0 ? 3.0 : 1.0);
+      setState(() {
+        scale = scale == 1.0 ? 1.1 : 1.0;
+        duration = duration == 250 ? 500: 250;
+      });
     }
   @override
   Widget build(BuildContext context) {
@@ -96,10 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(50),
           child: AnimatedScale(
               scale: scale,
-              duration: const Duration(seconds: 2),
+              duration: Duration(milliseconds: duration),
               child: Image(image: const AssetImage("images/real_heart.webp"))),
         ),
-      ])),
+      ])
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
